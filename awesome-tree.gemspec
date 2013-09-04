@@ -7,11 +7,11 @@ require "awesome-tree/version"
 Gem::Specification.new do |s|
   s.name        = "awesome-tree"
   s.version     = AwesomeTree::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of AwesomeTree."
-  s.description = "TODO: Description of AwesomeTree."
+  s.authors     = ["Dyson Simmons"]
+  s.email       = ["dysonsimmons@gmail.com"]
+  s.homepage    = "http://www.dysonsimmons.com"
+  s.summary     = "ActiveRecord tree structures using PostgreSQL"
+  s.description = "Add awesome-treeify to your models along with a parent_id field and get access to ancestors and descendents."
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]

@@ -9,43 +9,7 @@ module AwesomeTree
     module ClassMethods
       def awesome_treeify
         include InstanceMethods
-          has_secure_password
-          has_and_belongs_to_many :roles
-
-          validates :password, presence: {on: :create}, confirmation: true, length: {minimum: 6}, allow_blank: true,  reduce: true
-          validates :email, presence: true, uniqueness: true, email: {allow_blank: true}, reduce: true
-          validates :password_confirmation, presence: true, if: Proc.new { |p| ! p.password.blank? }, reduce: true
-
-          after_update :deliver_password_reset_notification
-
-          scope :root, -> { where(parent_id: nil) }
-      end
-
-      module InstanceMethods
-        # Ancestors
-        def ancestors
-          self_and_ancestors - [self]
-        end
-        def self_and_ancestors
-          self.class.self_and_ancestors_for(self)
-        end
-
-        # Descendents
-        def descendents
-          self_and_descendents - [self]
-        end
-        def self_and_descendents
-          self.class.self_and_descendents_for(self)
-        end
-
-        # Check if ancestors, self_and_ancestors, descendents or self_and_descendents includes role?
-        def method_missing(method, *args, &block)
-          if method.to_s =~ /^(.+)_includes\?$/
-            self.send($1.to_sym).include? *args.first
-          else
-            super
-          end
-        end
+        scope :root, -> { where(parent_id: nil) }
 
         private
           # Ancestors
@@ -87,6 +51,33 @@ module AwesomeTree
               SELECT id FROM search_tree ORDER BY path
             SQL
           end
+      end
+
+      module InstanceMethods
+        # Ancestors
+        def ancestors
+          self_and_ancestors - [self]
+        end
+        def self_and_ancestors
+          self.class.self_and_ancestors_for(self)
+        end
+
+        # Descendents
+        def descendents
+          self_and_descendents - [self]
+        end
+        def self_and_descendents
+          self.class.self_and_descendents_for(self)
+        end
+
+        # Check if ancestors, self_and_ancestors, descendents or self_and_descendents includes role?
+        def method_missing(method, *args, &block)
+          if method.to_s =~ /^(.+)_includes\?$/
+            self.send($1.to_sym).include? *args.first
+          else
+            super
+          end
+        end
       end # InstaceMethods
     end # ClassMethods
 
