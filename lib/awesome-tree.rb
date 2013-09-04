@@ -1,4 +1,3 @@
 require "awesome-tree/engine"
-
-module AwesomeTree
-end
+require 'awesome-tree/active_record'
+require 'awesome-tree/railtie'
