@@ -73,6 +73,14 @@ Using the self referencing belongs and has_many as above, you also get get the p
 * role.**children**
 * role.**children_includes?**
 
+#### Scopes
+
+A named scope called root is also added to the model to obtain all root records:
+
+```ruby
+root_role = Role.root
+```
+
 #### Usage example
 
 ```ruby
