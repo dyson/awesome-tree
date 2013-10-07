@@ -19,7 +19,7 @@ Tested using rails ~> 4.0.0
 Add to your Gemfile:
 
 ```ruby
-gem 'awesome-tree', git: 'https://github.com/dyson/awesome-tree.git', tag: 'v0.0.1'
+gem 'awesome-tree', git: 'https://github.com/dyson/awesome-tree.git', tag: 'v0.0.2'
 ```
 
 ##### Migration
